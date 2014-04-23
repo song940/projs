@@ -20,18 +20,21 @@
     return Projs.fn.init(options); 
   };
 
-  Projs.View = function(options){
-    return Projs.View.fn.init(options);
-  };
-  
-  Projs.View.fn = {
-    init: function(){
-      return this;
-    },
-    render: function(el){
-      $(el).html(this.name);
-      console.log('render:' ,this);
-    }
+  Projs.View = function(str){
+    return new Function("obj",
+      "var p=[],print=function(){p.push.apply(p,arguments);};" +
+      // Introduce the data as local variables using with(){}
+      "with(obj){p.push('" +
+      // Convert the template into pure JavaScript
+      str
+        .replace(/[\r\t\n]/g, " ")
+        .split("<%").join("\t")
+        .replace(/((^|%>)[^\t]*)'/g, "$1\r")
+        .replace(/\t=(.*?)%>/g, "',$1,'")
+        .split("\t").join("');")
+        .split("%>").join("p.push('")
+        .split("\r").join("\\'")
+      + "');}return p.join('');");
   };
 
   Projs.Router = function(routes) {
@@ -73,10 +76,19 @@
 
   Projs.fn.route = function(routes){
     var that = this;
-    var view = new Projs.View();
-    var thisArg = {
-      params: {},
-      render: view.render
+    var thisArg = function(c, a){
+      return {
+        params: {},
+        render: function(el){
+          el = el || document.body;
+          var t = this;
+          $.get('views/'+ c + '/' + a + '.tmpl',function(tmpl){
+            var view = new Projs.View(tmpl);
+            var html = view(t);
+            $(el).html(html);
+          });
+        }
+      };
     };
     var handler = function(route){
       return function(){
@@ -89,7 +101,7 @@
         if(controller){
           var action = controller[action_name];
           if(action){
-            action.apply(thisArg, args);
+            action.apply(thisArg(controller_name,action_name), args);
           }else{
             console.log('action not found:', action_name);
           }
