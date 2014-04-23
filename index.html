@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<script type="text/javascript" src="js/jquery.js" ></script>
+<script type="text/javascript" src="js/pro.js" ></script>
+<script type="text/javascript">
+
+(function(win, jq){
+  jq(function($){
+
+    var app = new Projs.App({  });
+    var router = app.route({ 
+      '/home/:id/*path': 'home#index',
+      '/user': 'users#index'
+    });
+
+
+    app.controller('home',{
+      index: function(id, path){
+        console.log("I'm in home at index! ", id,path);
+        this.name = 'Lsong';
+        this.render('h1');
+      }
+    });
+
+    app.controller('users',{
+      index: function(){
+        //alert("Hi! I'm a new user !!");
+        $('h1').text('Hello World');
+      }
+    });
+
+    router.start();
+  });
+})(window,jQuery);
+</script>
+</head>
+<body>
+  <h1>Pro.js MVC</h1>
+<a href="#/home/7/setting">Home</a>
+<a href="#/user">User</a>
+</body>
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</html>
