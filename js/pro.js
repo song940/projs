@@ -82,11 +82,14 @@
         render: function(el){
           el = el || document.body;
           var t = this;
-          $.get('views/'+ c + '/' + a + '.tmpl',function(tmpl){
-            var view = new Projs.View(tmpl);
+          var tmpl = $('#' + c + '-' + a);
+          if(tmpl.length > 0){
+            var view = new Projs.View(tmpl.html());
             var html = view(t);
             $(el).html(html);
-          });
+          }else{
+            console.log('template are missing .');
+          }
         }
       };
     };
