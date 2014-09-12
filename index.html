@@ -2,13 +2,35 @@
 <html>
 <head>
 <title></title>
+<link rel="stylesheet" href="http://necolas.github.io/normalize.css/3.0.1/normalize.css" type="text/css" charset="utf-8"0>
+<link rel="stylesheet" href="css/pro.css" type="text/css" charset="utf-8" >
+<style type="text/css">
+.col{
+  text-align: center;
+}
+
+.col h2{
+  text-align: left;
+}
+/* formatting for grid system */
+.dark {
+  background-color: rgb(172, 172, 172);
+}
+
+.light {
+  background-color: rgb(223, 223, 223);
+}
+
+.txt{
+  width: 100%;
+}
+</style>
 <script type="text/javascript" src="js/pro.js" ></script>
 <script type="text/tmpl" id="users-index" >
   Hello <%= name %>
 </script>
 <script type="text/javascript">
 ;(function(win, undefined){
-
   Projs.DOM.ready(function($){
     
     var app = new Projs.App({  });
@@ -18,41 +40,32 @@
     });
 
     var User = new Projs.Model('/users',{
-      $id: 'name'
-    });
-
-    //GET /users
-    User.$find({}, function(err, user){
-      console.log(user);
-    });
-    //GET /users/lsong
-    User.$find({ name: 'lsong' }, function(err, users){
-      console.log(users);
-    });
-    //PUT /users/lsong
-    User.$save({ name: 'lsong' }, function(err, user){
-      console.log(user);
-    });
-    //POST /users
-    User.$create({ name: 'lsong'}, function(err, user){
-      console.log(user);
-    });
-    //DELETE /users/lsong
-    User.$delete({ name: 'lsong' }, function(err, user){
-      console.log(user);
+      $id: 'name',
+      $findOne: function(model, callback){
+        this.$find(model, function(err, users){
+          var user = Projs(users).first();
+          callback(err, user);
+        });
+      }
     });
 
 
     app.controller('home',{
       index: function(){
-        console.log("I'm in home at index! ");
+        //GET /users
+        User.$find({}, function(err, user){
+          console.log("I'm in home at index! %s", user);
+        });
       }
     });
 
     app.controller('users',{
       index: function(id, path){
-        this.name = 'Lsong';
-        this.render('h1');
+        //GET /users/lsong
+        User.$findOne({ name: 'lsong' }, function(err, user){
+          this.name = user.name;
+          this.render('h1');
+        });
       }
     });
 
@@ -62,10 +75,165 @@
 })(window);
 </script>
 </head>
-<body>
-  <h1>Pro.js MVC</h1>
-<a href="#/home">Home</a>
-<a href="#/user/song940/setting">User</a>
+<body class="demo" >
+	<div class="container" >
+		<header>
+		<h1>Pro.js MVC</h1>
+		<nav>
+			<ul class="nav" >
+				<li><a href="#/home">Home</a></li>
+				<li><a href="#/user/song940/setting">User</a></li>
+			</ul>
+		</nav>
+		</header>
+		<div clsas="" >
+    <h1>Grid Layout System</h1>
+			<div class="row" >
+				<div class="col c1 dark" >span1</div>
+				<div class="col c11 light" >span11</div>
+			</div>
+      <div class="row" >
+        <div class="col c2 dark" >span2</div>
+        <div class="col c10 light" >span10</div>
+      </div>
+      <div class="row" >
+        <div class="col c3 dark" >span3</div>
+        <div class="col c9 light" >span9</div>
+      </div>
+      <div class="row" >
+        <div class="col c4 dark" >span4</div>
+        <div class="col c8 light" >span8</div>
+      </div>
+      <div class="row" >
+        <div class="col c5 dark" >span5</div>
+        <div class="col c7 light" >span7</div>
+      </div>
+      <div class="row" >
+        <div class="col c6 dark" >span6</div>
+        <div class="col c6 light" >span6</div>
+      </div>
+      <div class="row" >
+        <div class="col c7 dark" >span7</div>
+        <div class="col c5 light" >span5</div>
+      </div>
+      <div class="row" >
+        <div class="col c8 dark" >span8</div>
+        <div class="col c4 light" >span4</div>
+      </div>
+      <div class="row" >
+        <div class="col c9 dark" >span9</div>
+        <div class="col c3 light" >span3</div>
+      </div>
+      <div class="row" >
+        <div class="col c10 dark" >span10</div>
+        <div class="col c2 light" >span2</div>
+      </div>
+      <div class="row" >
+        <div class="col c11 dark" >span11</div>
+        <div class="col c1 light" >span1</div>
+      </div>
+      <div class="row">
+        <div class="col c12 dark">span12</div>
+      </div>
+		</div>
+    <div>
+      <h1>Typography</h1>
+      <div>
+        <h2>Headings</h2>
+        <div>
+          <h1>H1</h1>
+          <h2>H2</h2>
+          <h3>H3</h3>
+          <h4>H4</h4>
+          <h5>H5</h5>
+          <h6>H6</h6>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h1>Table</h1>
+      <div>
+        <table class="table table-border table-striped table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>@</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Lsong</td>
+              <td>song940@163.com</td>
+              <td><a href="#view">View</a></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Lsong</td>
+              <td>song940@163.com</td>
+              <td><a href="#view">View</a></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Lsong</td>
+              <td>song940@163.com</td>
+              <td><a href="#view">View</a></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td><a href="#">&lt;</a></td>
+              <td colspan="2">1/100</td>
+              <td><a href="#">&gt;</a></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    <div class="">
+      <h1>Forms</h1>
+      <p></p>
+      <div id="button">
+        <h2>Button</h2>
+        <div class="">
+          <h3>Type</h3>
+          <a class="btn" >Link</a>
+          <input type="button" value="Input" class="btn" />
+          <button type="button" class="btn" >Button</button>
+        </div>
+        <div class="">
+          <h3>Color</h3>
+          <a class="btn" >Default</a>
+          <a class="btn btn-primary" >Primary</a>
+          <a class="btn btn-success" >Success</a>
+          <a class="btn btn-info" >Info</a>
+          <a class="btn btn-warning" >Warning</a>
+          <a class="btn btn-danger" >Danger</a>
+        </div>
+      </div>
+      <div id="input">
+        <h2>Input</h2>
+        <div>
+          <h3>Type</h3>
+          <input type="text" class="txt" value="input" />
+          <h1></h1>
+          <textarea class="txt">textarea</textarea>
+        </div>
+        <div>
+          <h3>Color</h3>
+          <input type="text" class="txt txt-success" value="Success" />
+          <h1></h1>
+          <input type="text" class="txt txt-warning" value="Warning" />
+          <h1></h1>
+          <input type="text" class="txt txt-error" value="Error" />
+        </div>
+      </div>
+    </div>
+		<footer>
+			&copy; 2014 LSONG.ORG
+		</footer>
+	</div>
 </body>
-<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </html>

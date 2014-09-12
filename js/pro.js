@@ -7,14 +7,31 @@
    * @param {[type]} context  [description]
    */
   var Projs = function(selector, context){
-    if(Projs.DOM){
-      return Projs.DOM(selector, context);
-    }else{
-      console.error('Projs have not DOM selector .');
+    var type = Projs.typeOf(selector);
+    switch(type){
+      case 'Array':
+        var arr = selector;
+        return new Projs.Array(arr);
+        break;
+      case 'Object':
+        var obj = selector;
+        return new Projs.Object(obj);
+        break;
+      default: 
+        if(Projs.DOM){
+          return Projs.DOM(selector, context);
+        }else{
+          console.error('Projs have not DOM selector .');
+        }
+        break;
     }
   };
 
   Projs.version = [0, 0, 0];
+
+  Projs.noop = function(){
+
+  };
 
   /**
    * [extend description]
@@ -40,6 +57,7 @@
     var regexp = /\[|object |\]/gm;
     return type.replace(regexp, ''); // || (typeof obj);
   };
+
 
   /**
    * [DOM description]
@@ -268,8 +286,14 @@
   };
 
   var Model = function(url, options){
+      var that = this;
       this.url = url;
       this.options = options;
+      Projs.each(options, function(key, option){
+        if(/^\$/.test(key)){
+          that[key] = option;
+        }
+      });
       return this;
   };
 
@@ -283,8 +307,7 @@
     },
     $save: function(model, callback){
       var url = this.$getUrl(model);
-      console.log('PUT', url);
-      callback(null, model);
+      Ajax.put(url, model, callback);
     },
     $find: function(model, callback){
       var url = this.$getUrl(model);
@@ -292,22 +315,36 @@
     },
     $delete: function(model, callback){
       var url = this.$getUrl(model);
-      console.log('DELETE', url);
-      callback(null, model);
+      Ajax.delete(url, callback);
     },
     $create: function(model, callback){
       var url = this.$getUrl(model);
-      console.log('POST', url);
-      callback(null, model);
+      Ajax.post(url, callback);
     }
   };
 
   Projs.Model = Model;
 
   var Ajax = function(options){
+    var success = null;
+    var promise = {
+      success: function(func){
+        success = func;
+        return this;
+      },
+      error: function(){
+
+      }
+    };
+    var defaults = {
+      method: 'GET',
+      success: Projs.noop,
+      error: Projs.noop
+    };
+    options = Projs.extend(defaults, options);
     var xmlHttpRequest = Ajax.createXMLHttpRequest();
     xmlHttpRequest.onreadystatechange = function(){
-
+      console.log('onreadystatechange');
     }
    if(options.method == 'post') {
       xmlHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -319,8 +356,10 @@
       xmlHttpRequest.open(options.method, options.url, options.async);
       xmlHttpRequest.send(options.data);
     }catch(e){
-      console.error(e);
+      options.error(e);
     }
+    setTimeout(promise.success, 1000);
+    return promise;
   };
 
   Ajax.createXMLHttpRequest = function(){
@@ -341,7 +380,62 @@
     });
   };
 
+  Ajax.post = function(url, data, callback){
+    Ajax({
+      url: url,
+      method: 'POST',
+      success: function(data){
+        callback(null, data);
+      },
+      error: function(err){
+        callback(err);
+      }
+    });
+
+  };
+
+  Ajax.put = function(url, data, callback){
+    Ajax({
+      url: url,
+      method: 'PUT',
+      success: function(data){
+        callback(null, data);
+      },
+      error: function(err){
+        callback(err);
+      }
+    });
+
+  };
+
+  Ajax.delete = function(url, callback){
+    Ajax({
+      url: url,
+      method: 'DELETE',
+      success: function(data){
+        callback(null, data);
+      },
+      error: function(err){
+        callback(err);
+      }
+    });
+
+  };
+
   Projs.Ajax = Ajax;
+
+  var Scope = function(){
+    
+  };
+
+  Scope.fn = Scope.prototype = {
+    $watch: function(prop, callback){
+
+    }
+  };
+
+  Projs.Scope = Scope;
+
 
   win['Projs'] = Projs;
 
