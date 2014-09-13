@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <title></title>
-<link rel="stylesheet" href="http://necolas.github.io/normalize.css/3.0.1/normalize.css" type="text/css" charset="utf-8"0>
-<link rel="stylesheet" href="css/pro.css" type="text/css" charset="utf-8" >
+<link rel="stylesheet" type="text/css" href="css/pro-reset.css">
+<link rel="stylesheet" type="text/css" href="css/pro-base.css">
+<link rel="stylesheet" type="text/css" href="css/pro-grid.css">
+<link rel="stylesheet" type="text/css" href="css/pro-table.css">
+<link rel="stylesheet" type="text/css" href="css/pro-forms.css">
+<link rel="stylesheet" type="text/css" href="css/pro-navs.css">
+<link rel="stylesheet" type="text/css" href="css/pro-fonts.css">
+<link rel="stylesheet" type="text/css" href="css/pro-color.css">
+<link rel="stylesheet" type="text/css" href="css/pro-dropdown.css">
+<link rel="stylesheet" type="text/css" href="css/pro-utility.css">
+
 <style type="text/css">
+
+header{
+  padding: 15px 0;
+  border-bottom: solid 1px #eee;
+}
+
+header h1{
+  display: inline;
+}
+
+/**
+ * footer
+ */
+footer{
+  padding: 10px 0;
+  margin-top: 30px;
+  border-top: solid 1px #eee;
+}
+
 .col{
   text-align: center;
 }
@@ -12,18 +40,8 @@
 .col h2{
   text-align: left;
 }
-/* formatting for grid system */
-.dark {
-  background-color: rgb(172, 172, 172);
-}
 
-.light {
-  background-color: rgb(223, 223, 223);
-}
 
-.txt{
-  width: 100%;
-}
 </style>
 <script type="text/javascript" src="js/pro.js" ></script>
 <script type="text/tmpl" id="users-index" >
@@ -52,20 +70,11 @@
 
     app.controller('home',{
       index: function(){
-        //GET /users
-        User.$find({}, function(err, user){
-          console.log("I'm in home at index! %s", user);
-        });
       }
     });
 
     app.controller('users',{
       index: function(id, path){
-        //GET /users/lsong
-        User.$findOne({ name: 'lsong' }, function(err, user){
-          this.name = user.name;
-          this.render('h1');
-        });
       }
     });
 
@@ -77,65 +86,15 @@
 </head>
 <body class="demo" >
 	<div class="container" >
-		<header>
-		<h1>Pro.js MVC</h1>
-		<nav>
+		<header class="header" >
+		<h1 class="title" >Pro.js MVC</h1>
+		<nav class="inline-block pull-right" >
 			<ul class="nav" >
 				<li><a href="#/home">Home</a></li>
 				<li><a href="#/user/song940/setting">User</a></li>
 			</ul>
 		</nav>
 		</header>
-		<div clsas="" >
-    <h1>Grid Layout System</h1>
-			<div class="row" >
-				<div class="col c1 dark" >span1</div>
-				<div class="col c11 light" >span11</div>
-			</div>
-      <div class="row" >
-        <div class="col c2 dark" >span2</div>
-        <div class="col c10 light" >span10</div>
-      </div>
-      <div class="row" >
-        <div class="col c3 dark" >span3</div>
-        <div class="col c9 light" >span9</div>
-      </div>
-      <div class="row" >
-        <div class="col c4 dark" >span4</div>
-        <div class="col c8 light" >span8</div>
-      </div>
-      <div class="row" >
-        <div class="col c5 dark" >span5</div>
-        <div class="col c7 light" >span7</div>
-      </div>
-      <div class="row" >
-        <div class="col c6 dark" >span6</div>
-        <div class="col c6 light" >span6</div>
-      </div>
-      <div class="row" >
-        <div class="col c7 dark" >span7</div>
-        <div class="col c5 light" >span5</div>
-      </div>
-      <div class="row" >
-        <div class="col c8 dark" >span8</div>
-        <div class="col c4 light" >span4</div>
-      </div>
-      <div class="row" >
-        <div class="col c9 dark" >span9</div>
-        <div class="col c3 light" >span3</div>
-      </div>
-      <div class="row" >
-        <div class="col c10 dark" >span10</div>
-        <div class="col c2 light" >span2</div>
-      </div>
-      <div class="row" >
-        <div class="col c11 dark" >span11</div>
-        <div class="col c1 light" >span1</div>
-      </div>
-      <div class="row">
-        <div class="col c12 dark">span12</div>
-      </div>
-		</div>
     <div>
       <h1>Typography</h1>
       <div>
@@ -148,6 +107,41 @@
           <h5>H5</h5>
           <h6>H6</h6>
         </div>
+      </div>
+    </div>
+    <div>
+      <h2>List</h2>
+      <div>
+      <h3>ul</h3>
+        <ul>
+          <li>
+            A
+            <ul>
+              <li>A1</li>
+              <li>A2</li>
+              <li>A3</li>
+              <li>A4</li>
+                <ul>
+                  <li>A11</li>
+                  <li>A12</li>
+                  <li>A13</li>
+                  <li>A14</li>
+                </ul>
+            </ul>
+          </li>
+          <li>B</li>
+          <li>C</li>
+          <li>D</li>
+        </ul>
+      </div>
+      <div>
+        <h3>ol</h3>
+        <ol>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+        </ol>
       </div>
     </div>
     <div>
@@ -192,6 +186,56 @@
         </table>
       </div>
     </div>
+    <div clsas="" >
+    <h1>Grid</h1>
+      <div class="row" >
+        <div class="col-1 bg-dark" >span1</div>
+        <div class="col-11 bg-light" >span11</div>
+      </div>
+      <div class="row" >
+        <div class="col-2 bg-dark" >span2</div>
+        <div class="col-10 bg-light" >span10</div>
+      </div>
+      <div class="row" >
+        <div class="col-3 bg-dark" >span3</div>
+        <div class="col-9 bg-light" >span9</div>
+      </div>
+      <div class="row" >
+        <div class="col-4 bg-dark" >span4</div>
+        <div class="col-8 bg-light" >span8</div>
+      </div>
+      <div class="row" >
+        <div class="col-5 bg-dark" >span5</div>
+        <div class="col-7 bg-light" >span7</div>
+      </div>
+      <div class="row" >
+        <div class="col-6 bg-dark" >span6</div>
+        <div class="col-6 bg-light" >span6</div>
+      </div>
+      <div class="row" >
+        <div class="col-7 bg-dark" >span7</div>
+        <div class="col-5 bg-light" >span5</div>
+      </div>
+      <div class="row" >
+        <div class="col-8 bg-dark" >span8</div>
+        <div class="col-4 bg-light" >span4</div>
+      </div>
+      <div class="row" >
+        <div class="col-9 bg-dark" >span9</div>
+        <div class="col-3 bg-light" >span3</div>
+      </div>
+      <div class="row" >
+        <div class="col-10 bg-dark" >span10</div>
+        <div class="col-2 bg-light" >span2</div>
+      </div>
+      <div class="row" >
+        <div class="col-11 bg-dark" >span11</div>
+        <div class="col-1 bg-light" >span1</div>
+      </div>
+      <div class="row">
+        <div class="col-12 bg-dark">span12</div>
+      </div>
+    </div>
     <div class="">
       <h1>Forms</h1>
       <p></p>
@@ -203,6 +247,17 @@
           <input type="button" value="Input" class="btn" />
           <button type="button" class="btn" >Button</button>
         </div>
+        <div>
+		    	<h3>Size</h3>
+		    	<div>
+            <p>
+             <a class="btn btn-mini btn-primary">Mini Button</a>
+             <a class="btn btn-small btn-primary">Small Button</a>
+             <a class="btn btn-primary">Default Button</a>
+             <a class="btn btn-large btn-primary">Large Button</a>
+            </p>
+		    	</div>
+        </div>
         <div class="">
           <h3>Color</h3>
           <a class="btn" >Default</a>
@@ -212,14 +267,42 @@
           <a class="btn btn-warning" >Warning</a>
           <a class="btn btn-danger" >Danger</a>
         </div>
+        <div class="">
+          <h3>Icon</h3>
+          <a class="btn" ><i class="icon icon-twitter" ></i> Default</a>
+          <a class="btn btn-primary" ><i class="icon icon-twitter color-white" ></i> Primary</a>
+          <a class="btn btn-success" ><i class="icon icon-twitter color-white" ></i> Success</a>
+          <a class="btn btn-info" ><i class="icon icon-twitter color-white" ></i> Info</a>
+          <a class="btn btn-warning" ><i class="icon icon-twitter color-white" ></i> Warning</a>
+          <a class="btn btn-danger" ><i class="icon icon-twitter color-white" ></i> Danger</a>
+        </div>
+        <div>
+          <h3>Group</h3>
+          <div class="form-control">
+            <div class="btn-group">
+              <a class="btn">A</a>
+              <a class="btn">B</a>
+              <a class="btn">C</a>
+            </div>
+          </div>
+          <div class="form-control">
+            <div class="btn-group">
+              <a class="btn btn-primary">A</a>
+              <a class="btn btn-primary">B</a>
+              <a class="btn btn-primary">C</a>
+            </div>
+          </div>
+
+        </div>
       </div>
-      <div id="input">
+      <div></div>
+      <div id="input" >
         <h2>Input</h2>
         <div>
           <h3>Type</h3>
           <input type="text" class="txt" value="input" />
           <h1></h1>
-          <textarea class="txt">textarea</textarea>
+          <textarea class="txt txt-error">textarea</textarea>
         </div>
         <div>
           <h3>Color</h3>
@@ -228,6 +311,93 @@
           <input type="text" class="txt txt-warning" value="Warning" />
           <h1></h1>
           <input type="text" class="txt txt-error" value="Error" />
+        </div>
+      </div>
+      <div>
+        <form class="form">
+          <fieldset>
+              <legend>Title</legend>
+              <div class="form-control">
+                <label>Username:</label>
+                <input type="text" placeholder="username" class="txt" />
+              </div>
+              <div class="form-control">
+                <label>Password:</label>
+                <input type="password" placeholder="password" class="txt" />
+              </div>
+              <div class="form-control">
+                <label>Select</label>
+                <select>
+                  <option>A</option>
+                  <option>B</option>
+                </select>
+              </div>
+              <div class="form-control">
+                <label><input type="checkbox" value="Remember"> Remember</label>
+              </div>
+              <div class="form-action">
+                <button class="btn btn-primary" >Submit</button>
+              </div>
+          </fieldset>
+        </form>
+      </div>
+      <div>
+        <h1>Navs</h1>
+                <div>
+          <h2>Bar</h2>
+          <div>
+            <nav class="nav nav-bar" >
+              <a href="" class="navbar-brand">Brand</a>
+              <ul class="nav">
+                <li class="nav-sp">&nbsp;</li>
+                <li>Text</li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" >Menu <i class="icon icon-caret-down" ></i></a>
+                   <ul class="dropdown-menu" >
+                      <li><a href="">Menu1</a></li>
+                      <li><a href="">Menu2</a></li>
+                      <li>Menu3</li>
+                      <li>Menu4</li>
+                    </ul>
+                </li>
+                <li class="nav-active" >
+                  <a href="" >Link</a>
+                </li>
+                <li>
+                  <form >
+                    <input type="search" class="txt" placeholder="Search" />
+                    <button class="btn" type="submit">Search</button>
+                  </form>
+                </li>
+              </ul>
+              <ul class="nav">
+                <li><a href="">Sign up</a></li>
+                <li><a href="">Login in</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div>
+          <h2>Nav</h2>
+          <div>
+            <ul class="nav">
+              <li>Nav1</li>
+              <li>Nav2</li>
+              <li>Nav3</li>
+              <li>Nav4</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <h2>Tab</h2>
+          <div>
+            <ul class="nav nav-tabs">
+              <li>Tab1</li>
+              <li class="nav-active">Tab2</li>
+              <li>Tab3</li>
+              <li>Tab4</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
