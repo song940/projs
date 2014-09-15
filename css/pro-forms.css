@@ -123,9 +123,10 @@ button.btn{
   background: white;
   border-radius: 3px;
   max-width: 100%;
-  transition: all linear .2s;
   border: 1px solid #e5e5e5 !important;
-  /*transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;*/
+  /*transition: all linear .2s;*/
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: background-color linear .2s;
 }
 
 /*.txt:focus{

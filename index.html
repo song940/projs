@@ -13,81 +13,13 @@
 <link rel="stylesheet" type="text/css" href="css/pro-dropdown.css">
 <link rel="stylesheet" type="text/css" href="css/pro-utility.css">
 
-<style type="text/css">
-
-header{
-  padding: 15px 0;
-  border-bottom: solid 1px #eee;
-}
-
-header h1{
-  display: inline;
-}
-
-/**
- * footer
- */
-footer{
-  padding: 10px 0;
-  margin-top: 30px;
-  border-top: solid 1px #eee;
-}
-
-.col{
-  text-align: center;
-}
-
-.col h2{
-  text-align: left;
-}
-
-
-</style>
 <script type="text/javascript" src="js/pro.js" ></script>
-<script type="text/tmpl" id="users-index" >
-  Hello <%= name %>
-</script>
-<script type="text/javascript">
-;(function(win, undefined){
-  Projs.DOM.ready(function($){
-    
-    var app = new Projs.App({  });
-    var router = app.route({ 
-      '/home'           : 'home#index',
-      '/user/:id/*path' : 'users#index'
-    });
-
-    var User = new Projs.Model('/users',{
-      $id: 'name',
-      $findOne: function(model, callback){
-        this.$find(model, function(err, users){
-          var user = Projs(users).first();
-          callback(err, user);
-        });
-      }
-    });
-
-
-    app.controller('home',{
-      index: function(){
-      }
-    });
-
-    app.controller('users',{
-      index: function(id, path){
-      }
-    });
-
-    router.start();
-  });
-
-})(window);
-</script>
+<script type="text/javascript" src="js/pro-dom.js" ></script>
 </head>
-<body class="demo" >
+<body >
 	<div class="container" >
 		<header class="header" >
-		<h1 class="title" >Pro.js MVC</h1>
+		<h1 class="title inline" >Pro.js MVC</h1>
 		<nav class="inline-block pull-right" >
 			<ul class="nav" >
 				<li><a href="#/home">Home</a></li>
@@ -189,51 +121,51 @@ footer{
     <div clsas="" >
     <h1>Grid</h1>
       <div class="row" >
-        <div class="col-1 bg-dark" >span1</div>
-        <div class="col-11 bg-light" >span11</div>
+        <div class="col-1 bg-dark text-center" >span1</div>
+        <div class="col-11 bg-light text-center" >span11</div>
       </div>
       <div class="row" >
-        <div class="col-2 bg-dark" >span2</div>
-        <div class="col-10 bg-light" >span10</div>
+        <div class="col-2 bg-dark text-center" >span2</div>
+        <div class="col-10 bg-light text-center" >span10</div>
       </div>
       <div class="row" >
-        <div class="col-3 bg-dark" >span3</div>
-        <div class="col-9 bg-light" >span9</div>
+        <div class="col-3 bg-dark text-center" >span3</div>
+        <div class="col-9 bg-light text-center" >span9</div>
       </div>
       <div class="row" >
-        <div class="col-4 bg-dark" >span4</div>
-        <div class="col-8 bg-light" >span8</div>
+        <div class="col-4 bg-dark text-center" >span4</div>
+        <div class="col-8 bg-light text-center" >span8</div>
       </div>
       <div class="row" >
-        <div class="col-5 bg-dark" >span5</div>
-        <div class="col-7 bg-light" >span7</div>
+        <div class="col-5 bg-dark text-center" >span5</div>
+        <div class="col-7 bg-light text-center" >span7</div>
       </div>
       <div class="row" >
-        <div class="col-6 bg-dark" >span6</div>
-        <div class="col-6 bg-light" >span6</div>
+        <div class="col-6 bg-dark text-center" >span6</div>
+        <div class="col-6 bg-light text-center" >span6</div>
       </div>
       <div class="row" >
-        <div class="col-7 bg-dark" >span7</div>
-        <div class="col-5 bg-light" >span5</div>
+        <div class="col-7 bg-dark text-center" >span7</div>
+        <div class="col-5 bg-light text-center" >span5</div>
       </div>
       <div class="row" >
-        <div class="col-8 bg-dark" >span8</div>
-        <div class="col-4 bg-light" >span4</div>
+        <div class="col-8 bg-dark text-center" >span8</div>
+        <div class="col-4 bg-light text-center" >span4</div>
       </div>
       <div class="row" >
-        <div class="col-9 bg-dark" >span9</div>
-        <div class="col-3 bg-light" >span3</div>
+        <div class="col-9 bg-dark text-center" >span9</div>
+        <div class="col-3 bg-light text-center" >span3</div>
       </div>
       <div class="row" >
-        <div class="col-10 bg-dark" >span10</div>
-        <div class="col-2 bg-light" >span2</div>
+        <div class="col-10 bg-dark text-center" >span10</div>
+        <div class="col-2 bg-light text-center" >span2</div>
       </div>
       <div class="row" >
-        <div class="col-11 bg-dark" >span11</div>
-        <div class="col-1 bg-light" >span1</div>
+        <div class="col-11 bg-dark text-center" >span11</div>
+        <div class="col-1 bg-light text-center" >span1</div>
       </div>
       <div class="row">
-        <div class="col-12 bg-dark">span12</div>
+        <div class="col-12 bg-dark text-center">span12</div>
       </div>
     </div>
     <div class="">
