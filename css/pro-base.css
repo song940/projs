@@ -1,6 +1,8 @@
 
 html, body{
+  color: #666;
   font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 /**
@@ -94,6 +96,7 @@ input[type=checkbox]{
 
 header, footer{
   padding: 10px 0;
+  margin-bottom: 10px;
 }
 
 header{

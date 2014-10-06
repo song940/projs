@@ -1,6 +1,6 @@
 ;(function(win, Projs, undefined){
 	
-  var View = function(str){
+  var Tmpl = function(str){
     return new Function("obj",
       "var p=[],print=function(){p.push.apply(p,arguments);};" +
       // Introduce the data as local variables using with(){}
@@ -17,6 +17,6 @@
       + "');}return p.join('');");
   };
 
-  Projs.View = View;
+  Projs.Tmpl = Tmpl;
   
 })(window, Projs);

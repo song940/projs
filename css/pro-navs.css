@@ -17,9 +17,16 @@
 
 .nav.nav-bar{
 	width: 100%;
+	z-index: 100;
 	border-radius: 4px;
 	background: #f7f7f7;
 	border: 1px solid rgba(0,0,0,.1);
+}
+
+.nav.nav-bar.nav-bar-static{
+	top: 0;
+	position: fixed;
+	border-radius: 0;
 }
 
 .nav.nav-bar .nav > li > a{

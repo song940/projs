@@ -5,13 +5,14 @@
 <link rel="stylesheet" type="text/css" href="css/pro-reset.css">
 <link rel="stylesheet" type="text/css" href="css/pro-base.css">
 <link rel="stylesheet" type="text/css" href="css/pro-grid.css">
+<link rel="stylesheet" type="text/css" href="css/pro-navs.css">
 <link rel="stylesheet" type="text/css" href="css/pro-table.css">
 <link rel="stylesheet" type="text/css" href="css/pro-forms.css">
-<link rel="stylesheet" type="text/css" href="css/pro-navs.css">
 <link rel="stylesheet" type="text/css" href="css/pro-fonts.css">
 <link rel="stylesheet" type="text/css" href="css/pro-color.css">
-<link rel="stylesheet" type="text/css" href="css/pro-dropdown.css">
 <link rel="stylesheet" type="text/css" href="css/pro-utility.css">
+<link rel="stylesheet" type="text/css" href="css/pro-dropdown.css">
+<link rel="stylesheet" type="text/css" href="css/pro-progress.css">
 
 <script type="text/javascript" src="js/pro.js" ></script>
 <script type="text/javascript" src="js/pro-dom.js" ></script>
@@ -19,7 +20,10 @@
 <body >
 	<div class="container" >
 		<header class="header" >
-		<h1 class="title inline" >Pro.js MVC</h1>
+    <div class="progress loading">
+      <div class="bar"></div>
+    </div>
+		<h1 class="title inline" >Pro.js</h1>
 		<nav class="inline-block pull-right" >
 			<ul class="nav" >
 				<li><a href="#/home">Home</a></li>
@@ -27,55 +31,6 @@
 			</ul>
 		</nav>
 		</header>
-    <div>
-      <h1>Typography</h1>
-      <div>
-        <h2>Headings</h2>
-        <div>
-          <h1>H1</h1>
-          <h2>H2</h2>
-          <h3>H3</h3>
-          <h4>H4</h4>
-          <h5>H5</h5>
-          <h6>H6</h6>
-        </div>
-      </div>
-    </div>
-    <div>
-      <h2>List</h2>
-      <div>
-      <h3>ul</h3>
-        <ul>
-          <li>
-            A
-            <ul>
-              <li>A1</li>
-              <li>A2</li>
-              <li>A3</li>
-              <li>A4</li>
-                <ul>
-                  <li>A11</li>
-                  <li>A12</li>
-                  <li>A13</li>
-                  <li>A14</li>
-                </ul>
-            </ul>
-          </li>
-          <li>B</li>
-          <li>C</li>
-          <li>D</li>
-        </ul>
-      </div>
-      <div>
-        <h3>ol</h3>
-        <ol>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-        </ol>
-      </div>
-    </div>
     <div>
       <h1>Table</h1>
       <div>
@@ -329,6 +284,14 @@
               <li>Tab3</li>
               <li>Tab4</li>
             </ul>
+          </div>
+        </div>
+      </div>
+      <div id="progress" >
+        <h1>Progress</h1>
+        <div>
+          <div class="progress">
+            <div class="bar bg-success" style="width: 60%;" >60%</div>
           </div>
         </div>
       </div>

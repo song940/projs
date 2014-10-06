@@ -1,0 +1,10 @@
+
+.container{
+	width: 90%;
+	max-width: 2000px;
+}
+
+.nav a{
+	color: #666;
+	font-size: 12px;
+}

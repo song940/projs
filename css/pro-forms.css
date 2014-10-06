@@ -89,7 +89,6 @@ button.btn{
   clear: both;
   content:' ';
   display:block;
-
 }
 
 .btn-group > .btn{
@@ -194,6 +193,8 @@ button.btn{
   max-width: 100%;
   background: #fff;
   border-radius: 4px;
+  font-family: initial;
+  box-sizing: border-box;
   border: 1px solid #e5e5e5;
   transition: all linear .2s;
 }
@@ -207,9 +208,25 @@ button.btn{
 }
 
 .form-control{
+  font: inherit;
   margin: 15px 0;
+  position: relative;
 }
 
 .form-control label{
   display: block;
+}
+
+.form-control > [class*=icon-]{
+  top: 50%;
+  color: #999;
+  width: 30px;
+  text-align: center;
+  font-size: 14px;
+  margin-top: -7px;
+  position: absolute;
+}
+
+.form-control > [class*=icon-] + input.txt{
+  padding-left: 30px;
 }
